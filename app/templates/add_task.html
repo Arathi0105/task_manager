@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Tasker/Add_Task</title>
+    <style>
+        /* CSS Styles */
+        body{
+            background-image: url("{{ url_for('static', filename='Images/3.jpg') }}");
+        }
+        .floating-box {
+            position: absolute;
+            top: 10%; /* Center vertically */
+            left: 20%; /* Center horizontally */
+            width: 1000px; /* Adjust width */
+            height: 700px;
+            background: rgba(65, 19, 98, 0.573); /* Box background */
+            border-radius: 50px; /* Rounded corners */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.352); /* Floating shadow effect */
+            overflow: hidden; /* Ensures content stays within the box */
+        }
+        .image-container {
+            position: absolute;
+            top: 45%; /* Center vertically */
+            left: 55%; /* Center horizontally */
+            width: 400px; /* Set desired width */
+            height: auto;
+            
+        }
+
+        .image {
+            width: 100%; /* Image fills the container */
+            height: auto; /* Maintain aspect ratio */
+        }
+        .text-overlay {
+            position: absolute;
+            top: 50%; /* Center vertically */
+            left: 25%; /* Center horizontally */
+            transform: translate(-50%, -50%); /* Adjust for exact center */
+            color: rgb(255, 255, 255); /* Text color */
+            background-color: rgba(0, 0, 0, 0); /* Semi-transparent background */
+            font-size: 20px; /* Text size */
+            font-weight: bold; /* Optional: Make text bold */
+            border-radius: 100px; /* Optional: Rounded corners */
+        }
+
+        label {
+            display: inline-block;
+            width: 150px; /* Adjust width as needed */
+            font-size: 1.3rem;
+        }
+
+        input[type="text"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cccccc00;
+            border-radius: 16px; /* Make input fields curved */
+            font-size: 15px;
+            transition: 0.3s ease-in-out;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+        }
+
+        .radio-option input {
+            margin-right: 0.9rem;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 300px;
+            background-color: #ffffff00;
+        }
+        /*input[type="text"], input[type="date"], input[type="radio"] {
+            width: 100%;
+            padding: 10px;
+            /* border: 1px solid #cccccc00;
+            border-radius: 16px; /* Make input fields curved 
+            font-size: 15px;
+            /*outline: none;  Remove focus outline */
+            /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  Add light shadow 
+            transition: 0.3s ease-in-out; /* Smooth transition on focus 
+        }*/
+        button {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            color: white;
+            background-color: transparent;
+            border: 2px solid white;
+            border-radius: 25px; /* Creates curved borders */
+            cursor: pointer;
+            transition: all 0.3s ease; /* Smooth transition for hover effects */
+        }
+
+        button:hover {
+            background-color: green;
+            color: white;
+            border-color: green; /* Changes border to green on hover */
+        }
+    </style>
+
+</head>
+<body>
+    {% include 'navbar.html' %}<br><br>
+    <div class="floating-box">
+        <div class="image-container">
+            <img src="{{ url_for('static', filename='Images/4.png') }}" alt="..." width="400" height="350">
+        </div>
+        <div class="text-overlay">
+            <h2>Add Task</h2>
+            <form action="/tasks" method="POST">
+                    <label for="task_name">Task Name:</label>
+                    <input type="text" id="task_name" name="task_name" required>
+                    <br>
+                    <label for="task_date">Task Date:</label>
+                    <input type="date" id="task_date" name="task_date" required>
+                <br>
+                <div class="radio-group">
+                    <label>Status:</label>
+                    <br>
+                    <div class="radio-option">
+                        <input type="radio" id="pending" name="status" value="Pending" required>
+                        <label for="pending">Pending</label>
+                    </div>
+                    <br>
+                    <div class="radio-option">
+                        <input type="radio" id="completed" name="status" value="Completed" required>
+                        <label for="completed">Completed</label>
+                    </div>
+                    
+                    <br>
+                    <div class="radio-option">
+                        <input type="radio" id="completed" name="status" value="In Progress" required>
+                        <label for="completed">In Progress</label>
+                    </div>
+                    
+                </div>
+                <br>
+                
+                <button type="submit">Submit Task</button>
+            </form>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

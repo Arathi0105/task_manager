@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Tasker</title>
+    <style>
+        /* CSS Styles */
+        body{
+            background-image: url("{{ url_for('static', filename='Images/3.jpg') }}");
+        }
+        .floating-box {
+            position: absolute;
+            top: 10%; /* Center vertically */
+            left: 20%; /* Center horizontally */
+            width: 1000px; /* Adjust width */
+            height: 700px;
+            background: rgba(91, 24, 139, 0.447); /* Box background */
+            border-radius: 50px; /* Rounded corners */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.352); /* Floating shadow effect */
+            overflow: hidden; /* Ensures content stays within the box */
+        }
+        .image-container {
+            position: relative;
+            width: 500px; /* Set desired width */
+            height: auto;
+        }
+
+        .image {
+            position: absolute;
+            top: 20%; /* Center vertically */
+            left: 10%; /* Center horizontally */
+            width: 100%; /* Image fills the container */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        .text-overlay {
+            position: absolute;
+            top: 18%; /* Center vertically */
+            left: 50%; /* Center horizontally */
+            transform: translate(-50%, -50%); /* Adjust for exact center */
+            color: rgb(255, 255, 255); /* Text color */
+            background-color: rgba(0, 0, 0, 0); /* Semi-transparent background */
+            padding: 10px 20px; /* Padding around the text */
+            font-size: 50px; /* Text size */
+            font-weight: bold; /* Optional: Make text bold */
+            text-align: center; /* Center text */
+        }
+    </style>
+
+</head>
+<body>
+    {% include 'navbar.html' %}<br><br>
+    <div class="floating-box">
+        <div class="image">
+    <img src="{{ url_for('static', filename='Images/1.png') }}" alt="..." width="780" height="500"></div>
+    <div class="text-overlay">Welcome to Tasker</div>
+</div>
+</body>
+</html>

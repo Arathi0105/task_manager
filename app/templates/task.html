@@ -1,0 +1,83 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task List</title>
+    <style>
+        body{
+            background-color: lightblue;
+        }
+    .task-container {
+            margin: 2rem;
+            position: absolute;
+            top: 150px;
+            left: 60px;
+            font-size: large;
+        }
+
+        .filter-options {
+            margin-bottom: 1rem;
+        }
+
+        .filter-options select {
+            padding: 0.5rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .card {
+            width: 450px;
+            padding: 1.9rem;
+            background: #fdfcfc4d;
+            border: 1px solid #fbfafa;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+        .image-container {
+            position: absolute;
+            top: 30%; /* Center vertically */
+            left: 45%; /* Center horizontally */
+            width: 400px; /* Set desired width */
+            height: auto;
+            
+        }
+        h1{
+            position: absolute;
+            left: 25px;
+        }
+    </style>
+</head>
+<body>
+    <h1>My Tasks</h1>
+    <div class="image-container">
+        <img src="{{ url_for('static', filename='Images/5.png') }}" alt="..." width="700" height="550">
+    </div>
+    <div class="task-container">
+        <div class="filter-options">
+            <label for="status-filter">Filter by Status:</label>
+            <select id="status-filter">
+                <option value="all">All</option>
+                <option value="completed">Completed</option>
+                <option value="pending">Pending</option>
+                <option value="in-progress">In Progress</option>
+            </select>
+        </div>
+            {% for tk in task %}
+            <div class="card">
+                <h4>Task: {{ tk.name }}</h4>
+                <p><strong>Date:</strong> {{ tk.date }}</p>
+                <p><strong>Status:</strong> {{ tk.status.capitalize() }}</p>
+            </div>
+            {% endfor %}
+    <br>
+</body>
+</html>
+{% endblock %}
