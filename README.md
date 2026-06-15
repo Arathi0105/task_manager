@@ -1,1 +1,1 @@
-# This s study document and I am studying this.
+# This study document and I am studying this.
